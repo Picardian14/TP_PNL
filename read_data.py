@@ -11,7 +11,7 @@ def main():
     args = ap.parse_args()
 
     sentence_data = open(args.sentences, 'r')
-    with open('train.txt','w') as f:
+    with open('test.txt','w') as f:
         if args.labels:
                 label_data = open(args.labels, 'r')
                 for sentence, captionID, label in zip(it_sentences(sentence_data), it_captionId(sentence_data), it_labels(label_data)):
@@ -19,12 +19,12 @@ def main():
                         f.write(sentence + '|' + captionID + '|' +label +'\n')
                         pass
         else:
-                for sentence in it_sentences(sentence_data):
+                for sentence, captionID in zip(it_sentences(sentence_data), it_captionId(sentence_data)):
                 # Tenemos una oración en sentence
+                        f.write(sentence + '|' + captionID + '\n')
                 #print(sentence)
                         pass
     
-
 def it_sentences(sentence_data):
     for line in sentence_data:
         example = json.loads(line)
