@@ -3,7 +3,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import numpy as np 
 from keras.models import Sequential
-from keras.layers import Embedding, Flatten, Dense
+from keras.layers import Embedding, Flatten, Dense, SimpleRNN
 import matplotlib.pyplot as plt
 
 
@@ -51,9 +51,8 @@ y_val = labels[training_samples: training_samples+validation_samples]
 
 model = Sequential()
 model.add(Embedding(max_words, 32, input_length=max_len))
-model.add(Flatten())
-model.add(Dense(32, activation='sigmoid'))
-model.add(Dense(32, activation='sigmoid'))
+#model.add(Flatten())
+model.add(SimpleRNN(32))
 model.add(Dense(3, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])

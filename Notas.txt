@@ -15,3 +15,12 @@ model.add(Dense(32, activation='sigmoid'))
 model.add(Dense(3, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
  loss: 1.0614 - acc: 0.3990 - val_loss: 1.1369 - val_acc: 0.3361
+
+
+model = Sequential()
+model.add(Embedding(max_words, 32, input_length=max_len))
+#model.add(Flatten())
+model.add(SimpleRNN(32))
+model.add(Dense(3, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+Para el 5to epoch iba en ac 0.36. Después se me tildó toda la compu
