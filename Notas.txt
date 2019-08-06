@@ -1,0 +1,17 @@
+1er modelo:
+
+model.add(Embedding(max_words, 32, input_length=max_len))
+model.add(Flatten())
+model.add(Dense(32, activation='relu'))
+model.add(Dense(3, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+loss: 1.0385 - acc: 0.4128 - val_loss: 1.1877 - val_acc: 0.3314
+
+2do
+model.add(Embedding(max_words, 32, input_length=max_len))
+model.add(Flatten())
+model.add(Dense(32, activation='sigmoid'))
+model.add(Dense(32, activation='sigmoid'))
+model.add(Dense(3, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+ loss: 1.0614 - acc: 0.3990 - val_loss: 1.1369 - val_acc: 0.3361

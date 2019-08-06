@@ -52,9 +52,11 @@ y_val = labels[training_samples: training_samples+validation_samples]
 model = Sequential()
 model.add(Embedding(max_words, 32, input_length=max_len))
 model.add(Flatten())
-model.add(Dense(32, activation='relu'))
+model.add(Dense(32, activation='sigmoid'))
+model.add(Dense(32, activation='sigmoid'))
 model.add(Dense(3, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val,y_val))
+
