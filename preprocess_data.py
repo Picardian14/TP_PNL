@@ -1,0 +1,48 @@
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
+import numpy as np 
+from keras.models import Sequential
+from keras.layers import Embedding, Flatten, Dense
+import matplotlib.pyplot as plt
+import my_Class
+
+
+
+max_words = 1000
+texts = []
+labels = []
+contradiction = np.asarray([1,0,0])
+entailment = np.asarray([0,1,0])
+neutral = np.asarray([0,0,1])
+label_index = { 'contradiction\n': contradiction, 'entailment\n':entailment, 'neutral\n':neutral}
+
+texts,labels = my_Class.read_data('train.txt',label_index)
+training_samples = len(texts)        
+
+texts,labels = my_Class.read_data('val.txt',label_index)
+
+validation_samples = len(texts) - training_samples
+
+tokenizer = Tokenizer(num_words=max_words)
+tokenizer.fit_on_texts(texts) # Creo el índice para los tokens
+sequences = tokenizer.texts_to_sequences(texts)
+word_index = tokenizer.word_index
+
+data = pad_sequences(sequences) # devuelve un tensor de shape (num_sequences, maxlen o maxima sequencia)
+                                       #Tiene todas las reviews recortadas hasta max_len tokens
+max_len = len(data[0]) #ésto da lo que pad_sequences tomo como la maxima longitud de oranciones
+labels = np.asarray(labels) #Lo pasa de lista a array ¿por qué?
+
+indices = np.arange(data.shape[0])  #hago un array empezando desde 0 hasta data.shape[0]
+
+
+x_train = data[:training_samples]
+x_val = data[training_samples: training_samples+validation_samples]
+
+y_train = labels[:training_samples]
+y_val = labels[training_samples: training_samples+validation_samples]
+
+my_Class.model_A(max_words,max_len)
+
+history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val,y_val))
+
