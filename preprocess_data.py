@@ -53,7 +53,6 @@ model = Sequential()
 model.add(Embedding(max_words, 32, input_length=max_len))
 model.add(Flatten())
 model.add(Dense(32, activation='sigmoid'))
-model.add(Dense(32, activation='sigmoid'))
 model.add(Dense(3, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
