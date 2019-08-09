@@ -3,12 +3,12 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import numpy as np 
 from keras.models import Sequential
-from keras.layers import Embedding, Flatten, Dense
+from keras.layers import Embedding, Flatten, Dense, LSTM
 import matplotlib.pyplot as plt
 
 
 
-max_words = 1000
+max_words = 500
 texts = []
 labels = []
 contradiction = np.asarray([1,0,0])
