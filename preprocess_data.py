@@ -21,9 +21,9 @@ neutral = np.asarray([0,0,1])
 label_index = { 'contradiction\n': contradiction, 'entailment\n':entailment, 'neutral\n':neutral}
 
 # leemos archivos que contienen oraciones y etiquetas
-my_Class.read_data('val.txt',label_index)
-training_samples = len(texts)        
-my_Class.read_data('train.txt',label_index)
+texts,labels=my_Class.read_data('val.txt',label_index)
+training_samples = len(texts)                
+texts,labels=my_Class.read_data('train.txt',label_index)
 validation_samples = len(texts) - training_samples
 
 tokenizer = Tokenizer(num_words=max_words)
