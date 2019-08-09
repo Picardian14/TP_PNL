@@ -49,13 +49,6 @@ x_val = data[training_samples: training_samples+validation_samples]
 y_train = labels[:training_samples]
 y_val = labels[training_samples: training_samples+validation_samples]
 
-<<<<<<< HEAD
-model = Sequential()
-model.add(Embedding(max_words, 32, input_length=max_len))
-model.add(Flatten())
-model.add(Dense(32, activation='sigmoid'))
-model.add(Dense(3, activation='softmax'))
-=======
 tensorborad = TensorBoard(log_dir="logs/{}".format(time()))
 #model = my_Class.model_A(max_words,max_len)
 model = my_Class.model_B(max_words,max_len)
