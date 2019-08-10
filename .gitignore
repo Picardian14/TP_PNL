@@ -1,3 +1,4 @@
 *.zip
 *.jsonl
 *.csv
+__pycache__
