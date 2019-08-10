@@ -44,3 +44,16 @@ def model_B(max_words,max_len):
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     
     return model
+
+def model_C(max_words,max_len):
+    model = Sequential()
+    model.add(Embedding(max_words,32,input_length=max_len))
+    model.add(Flatten())
+    model.add(Dense(64, activation='sigmoid'))
+    model.add(Dropout(0.25))
+    model.add(Dense(32, activation='sigmoid'))
+    model.add(Dense(3, activation='softmax'))
+    
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    
+    return model

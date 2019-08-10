@@ -49,9 +49,11 @@ x_val = data[training_samples: training_samples+validation_samples]
 y_train = labels[:training_samples]
 y_val = labels[training_samples: training_samples+validation_samples]
 
-tensorborad = TensorBoard(log_dir="logs/{}".format(time()))
+#tensorborad = TensorBoard(log_dir="logs/{}".format(time()))
 #model = my_Class.model_A(max_words,max_len)
-model = my_Class.model_B(max_words,max_len)
+#model = my_Class.model_B(max_words,max_len)
+model = my_Class.model_C(max_words,max_len)
+
 
 history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val,y_val), callbacks=tensorborad)
 
