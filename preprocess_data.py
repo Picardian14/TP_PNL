@@ -25,10 +25,10 @@ neutral = np.asarray([0,0,1])
 label_index = { 'contradiction\n': contradiction, 'entailment\n':entailment, 'neutral\n':neutral}
 
 # leemos archivos que contienen oraciones y etiquetas
-texts,labels=my_Class.read_data('val.txt',label_index)
-training_samples = len(texts)                
 texts,labels=my_Class.read_data('train.txt',label_index)
-validation_samples = len(texts) - training_samples
+training_samples = len(texts)                
+texts,labels=my_Class.read_data('test.txt',label_index)
+validation_samples = len(texts)
 
 tokenizer = Tokenizer(num_words=max_words)
 tokenizer.fit_on_texts(texts) # Creo el índice para los tokens
@@ -44,7 +44,7 @@ indices = np.arange(data.shape[0])  #hago un array empezando desde 0 hasta data.
 
 
 x_train = data[:training_samples]
-x_val = data[training_samples: training_samples+validation_samples]
+x_val = data[training_samples: validation_samples]
 
 y_train = labels[:training_samples]
 y_val = labels[training_samples: training_samples+validation_samples]
@@ -55,7 +55,7 @@ y_val = labels[training_samples: training_samples+validation_samples]
 model = my_Class.model_C(max_words,max_len)
 
 
-history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val,y_val), callbacks=tensorborad)
+history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val,y_val))
 
 # Plot training & validation accuracy values
 plt.plot(history.history['acc'])
