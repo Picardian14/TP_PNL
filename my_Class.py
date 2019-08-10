@@ -15,7 +15,7 @@ def read_data(file_to_read,label_index):
         for line in f:
             data = line.split('|')
             texts.append(data[0])
-            labels.append(label_index[data[2]])
+            labels.append(label_index[data[1]])
     return texts, labels
 
 
